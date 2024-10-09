@@ -4,13 +4,13 @@ import lombok.Data;
 
 @Data
 public class Montagne {
-    private Position position;
+    private final Position position;
 
     public Montagne(int hor, int ver) {
         position = new Position(hor, ver);
     }
 
     public String toString() {
-        return Type.M + " - " + position.getHor() + " - " + position.getVer() + "\n";
+        return Type.M + " - " + position.hor() + " - " + position.ver() + "\n";
     }
 }

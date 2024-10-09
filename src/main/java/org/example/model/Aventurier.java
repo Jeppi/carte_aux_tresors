@@ -47,13 +47,13 @@ public class Aventurier {
         return this;
     }
 
-    public Aventurier avance() {
-        Position destination = new Position(position.getHor(), position.getVer());
+    private Aventurier avance() {
+        Position destination = new Position(position.hor(), position.ver());
         switch (orientation) {
-            case N -> destination.setVer(destination.getVer() - 1);
-            case E -> destination.setHor(destination.getHor() + 1);
-            case S -> destination.setVer(destination.getVer() + 1);
-            case O -> destination.setHor(destination.getHor() - 1);
+            case N -> destination = new Position(position.hor(), position.ver() - 1);
+            case E -> destination = new Position(position.hor() + 1, position.ver());
+            case S -> destination = new Position(position.hor(), position.ver() + 1);
+            case O -> destination = new Position(position.hor() - 1, position.ver());
         }
         if (isValide(destination, carte)) {
             position = destination;
@@ -62,7 +62,7 @@ public class Aventurier {
         return this;
     }
 
-    public Aventurier droite() {
+    private Aventurier droite() {
         switch (orientation) {
             case N -> orientation = Orientation.E;
             case E -> orientation = Orientation.S;
@@ -72,7 +72,7 @@ public class Aventurier {
         return this;
     }
 
-    public Aventurier gauche() {
+    private Aventurier gauche() {
         switch (orientation) {
             case N -> orientation = Orientation.O;
             case O -> orientation = Orientation.S;
@@ -82,7 +82,7 @@ public class Aventurier {
         return this;
     }
 
-    public Aventurier collecte() {
+    private Aventurier collecte() {
         List<Tresor> tresorsCopy = new ArrayList<>(carte.getTresors());
         for (Tresor tresor : tresorsCopy) {
             if (position.equals(tresor.getPos())) {
@@ -94,10 +94,10 @@ public class Aventurier {
     }
 
     private static boolean isValide(Position dest, Carte carte) {
-        if (dest.getHor() < 0 || dest.getHor() >= carte.getLargeur()) {
+        if (dest.hor() < 0 || dest.hor() >= carte.getLargeur()) {
             return false;
         }
-        if (dest.getVer() < 0 || dest.getVer() >= carte.getHauteur()) {
+        if (dest.ver() < 0 || dest.ver() >= carte.getHauteur()) {
             return false;
         }
         // L'aventurier ne peut aller sur une position occupée par une montagne ou un
@@ -110,7 +110,7 @@ public class Aventurier {
     }
 
     public String toString() {
-        return Type.A + " - " + nom + " - " + position.getHor() + " - " + position.getVer() + " - " +
+        return Type.A + " - " + nom + " - " + position.hor() + " - " + position.ver() + " - " +
                 orientation + " - " + nbTresors + "\n";
     }
 
