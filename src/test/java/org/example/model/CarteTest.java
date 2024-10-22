@@ -8,8 +8,8 @@ class CarteTest {
     @Test
     void testIntegration_aventurier_unique() {
         Carte carte = new Carte(3, 4);
-        carte.ajouteMontagne(new Montagne(1, 0));
-        carte.ajouteMontagne(new Montagne(2, 1));
+        carte.ajouteMontagne(new Montagne(new Position(1, 0)));
+        carte.ajouteMontagne(new Montagne(new Position(2, 1)));
         // trésor 1
         carte.ajouteTresor(new Tresor(0, 3, 2));
         // trésor 2
@@ -45,8 +45,8 @@ class CarteTest {
     @Test
     void testIntegration_deux_aventuriers() {
         Carte carte = new Carte(3, 4);
-        carte.ajouteMontagne(new Montagne(1, 0));
-        carte.ajouteMontagne(new Montagne(2, 1));
+        carte.ajouteMontagne(new Montagne(new Position(1, 0)));
+        carte.ajouteMontagne(new Montagne(new Position(2, 1)));
         carte.ajouteTresor(new Tresor(0, 3, 2));
         carte.ajouteTresor(new Tresor(1, 3, 3));
         Aventurier lara = new Aventurier("Lara", 1, 1, Orientation.S, "AAADADAGGA", carte);

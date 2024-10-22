@@ -40,8 +40,8 @@ class AventurierTest {
     @Test
     void deplacement_limites_carte() {
         // Ici les montagnes n'interférent pas avec les déplacements choisis
-        carte.ajouteMontagne(new Montagne(2, 2));
-        carte.ajouteMontagne(new Montagne(0, 0));
+        carte.ajouteMontagne(new Montagne(new Position(2, 2)));
+        carte.ajouteMontagne(new Montagne(new Position(0, 0)));
 
         // Orientation Nord on part de (1,1)
         aventurier = new Aventurier("Lara", 1, 1, Orientation.N, "A", carte);
@@ -85,8 +85,8 @@ class AventurierTest {
     @Test
     public void deplacement_limites_montagne() {
 
-        carte.ajouteMontagne(new Montagne(2, 2));
-        carte.ajouteMontagne(new Montagne(0, 0));
+        carte.ajouteMontagne(new Montagne(new Position(2, 2)));
+        carte.ajouteMontagne(new Montagne(new Position(0, 0)));
 
         // en arrivant par le Nord de (1,1) vers (2,2)
         aventurier = new Aventurier("Lara", 1, 1, Orientation.E, "ADA", carte);

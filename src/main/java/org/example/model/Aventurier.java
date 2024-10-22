@@ -103,7 +103,7 @@ public class Aventurier {
         // L'aventurier ne peut aller sur une position occupée par une montagne ou un
         // autre aventurier.
         return carte.getMontagnes().stream()
-                .noneMatch(m -> m.getPosition().equals(dest))
+                .noneMatch(m -> m.position().equals(dest))
                 &&
                 carte.getAventuriers().stream()
                         .noneMatch(a -> a.getPosition().equals(dest));

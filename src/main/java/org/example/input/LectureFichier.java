@@ -16,18 +16,18 @@ public class LectureFichier {
     private Carte carte;
 
     public void lireFichier() throws Exception {
-        List<String> allLines;
+        List<String> lignes;
 
         try {
-            allLines = Files.readAllLines(Paths.get("carte.txt"));
+            lignes = Files.readAllLines(Paths.get("carte.txt"));
         } catch (IOException e) {
             throw new IOException("Le fichier carte.txt doit être placé à la racine du programme.");
         }
 
-        for (String line : allLines) {
+        for (String ligne : lignes) {
             // On ignore les lignes commentées
-            if (!line.trim().startsWith("#")) {
-                String[] strings = line.trim().split("-");
+            if (!ligne.trim().startsWith("#")) {
+                String[] strings = ligne.trim().split("-");
                 // Création de la carte
                 if (carte == null) {
                     if (C.equals(Type.valueOf(ParseString(strings[0])))) {
@@ -38,7 +38,8 @@ public class LectureFichier {
                 } else {
                     // Complétion de la carte
                     switch (Type.valueOf(strings[0].strip())) {
-                        case M -> carte.ajouteMontagne(new Montagne(parseNum(strings[1]), parseNum(strings[2])));
+                        case M ->
+                                carte.ajouteMontagne(new Montagne(new Position(parseNum(strings[1]), parseNum(strings[2]))));
                         case T ->
                                 carte.ajouteTresor(new Tresor(parseNum(strings[1]), parseNum(strings[2]), parseNum(strings[3])));
                         case A ->
